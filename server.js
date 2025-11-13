@@ -10,20 +10,28 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const db = new pg.Pool({
+/*const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     ca: process.env.SUPABASE_CA,
   },
 });
 
-/*
+
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     ca: fs.readFileSync("./config/SUPABASE_CA.crt").toString(),
   },
 });*/ 
+
+const db = new pg.Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  },
+});
+
 
 // Endpoint per ottenere tutte le quotes
 app.get("/quotes", async (req, res) => {
