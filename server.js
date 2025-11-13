@@ -30,6 +30,18 @@ app.post("/quotes", async (req, res) => {
   res.json(result.rows[0]);
 });
 
+// ✅ Endpoint di health check per il DB
+app.get("/health/db", async (req, res) => {
+  try {
+    const result = await db.query("SELECT NOW()");
+    res.json({ status: "ok", time: result.rows[0].now });
+  } catch (err) {
+    console.error("❌ Errore connessione DB:", err.message);
+    res.status(500).json({ status: "error", message: err.message });
+  }
+});
+
+
 // Avvia il server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`✅ Server attivo su porta ${PORT}`));
