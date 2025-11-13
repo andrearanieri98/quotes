@@ -2,7 +2,7 @@ import express from "express";
 import pg from "pg";
 import cors from "cors";
 import dotenv from "dotenv";
-
+import fs from "fs"
 
 dotenv.config(); // Legge il file .env
 
@@ -17,7 +17,13 @@ const db = new pg.Pool({
   },
 });
 
-
+/*
+const db = new pg.Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    ca: fs.readFileSync("./config/SUPABASE_CA.crt").toString(),
+  },
+});*/ 
 
 // Endpoint per ottenere tutte le quotes
 app.get("/quotes", async (req, res) => {
