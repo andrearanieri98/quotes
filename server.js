@@ -12,10 +12,11 @@ app.use(cors());
 // Crea connessione al database Supabase
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
-  host: 'db.dlrbngskulamufqabjlu.supabase.co', // forza host IPv4
-  family: 4 // forza uso di IPv4
+  ssl: {
+    rejectUnauthorized: false
+  },
 });
+
 
 
 // Endpoint per ottenere tutte le quotes
