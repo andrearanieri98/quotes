@@ -2,7 +2,7 @@ import express from "express";
 import pg from "pg";
 import cors from "cors";
 import dotenv from "dotenv";
-import fs from "fs"
+//import fs from "fs"
 
 dotenv.config(); // Legge il file .env
 
