@@ -2,7 +2,7 @@ import express from "express";
 import pg from "pg";
 import cors from "cors";
 import dotenv from "dotenv";
-import fs from "fs";
+
 
 dotenv.config(); // Legge il file .env
 
@@ -13,8 +13,7 @@ app.use(cors());
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
-    //ca: fs.readFileSync("./config/prod-ca-2021.crt").toString()
-    ca: process.env.SUPABASE_CA
+    ca: process.env.SUPABASE_CA?.replace(/\\n/g, '\n'),
   },
 });
 
