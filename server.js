@@ -25,11 +25,15 @@ const db = new pg.Pool({
   },
 });*/ 
 
+// ✅ Active database connection (Render + Supabase Transaction Pooler)
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
-    rejectUnauthorized: false
+    rejectUnauthorized: false, // ignores self-signed certificate
   },
+  host: "aws-1-eu-west-1.pooler.supabase.com", // ensures IPv4-compatible endpoint
+  port: 6543, // Supabase transaction pooler port
+  family: 4, // forces IPv4
 });
 
 
