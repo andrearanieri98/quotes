@@ -10,14 +10,14 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-/*const db = new pg.Pool({
+const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     ca: process.env.SUPABASE_CA,
   },
 });
 
-
+/*
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -25,6 +25,8 @@ const db = new pg.Pool({
   },
 });*/ 
 
+
+/*WORKS
 // ✅ Active database connection (Render + Supabase Transaction Pooler)
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -35,7 +37,7 @@ const db = new pg.Pool({
   port: 6543, // Supabase transaction pooler port
   family: 4, // forces IPv4
 });
-
+*/ 
 
 // Endpoint per ottenere tutte le quotes
 app.get("/quotes", async (req, res) => {
