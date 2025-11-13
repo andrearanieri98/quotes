@@ -13,7 +13,7 @@ app.use(cors());
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
-    ca: process.env.SUPABASE_CA?.replace(/\\n/g, '\n'),
+    ca: process.env.SUPABASE_CA,
   },
 });
 
