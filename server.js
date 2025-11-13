@@ -2,6 +2,7 @@ import express from "express";
 import pg from "pg";
 import cors from "cors";
 import dotenv from "dotenv";
+import fs from "fs";
 
 dotenv.config(); // Legge il file .env
 
@@ -9,11 +10,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Crea connessione al database Supabase
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
-    rejectUnauthorized: false
+    //ca: fs.readFileSync("./config/prod-ca-2021.crt").toString()
+    ca: process.env.SUPABASE_CA
   },
 });
 
